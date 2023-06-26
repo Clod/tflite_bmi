@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:io';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -158,312 +157,314 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: const Text("Calculadora de IMC"),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          SizedBox(
-            height: 10.0,
-          ),
-          Text(
-            "Ingrese el sexo",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-          ),
-          Row(
-            // mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            //crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Container(
-                width: 150.0,
-                child: RadioListTile(
-                  title: Text('Mujer'),
-                  value: 'mujer',
-                  groupValue: _selectedOption,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedOption = value;
-                    });
-                  },
-                ),
-              ),
-              Container(
-                width: 150.0,
-                child: RadioListTile(
-                  title: Text('Varón'),
-                  value: 'varon',
-                  groupValue: _selectedOption,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedOption = value;
-                    });
-                  },
-                ),
-              ),
-            ],
-          ),
-          Text(
-            "Ingrese la altura",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 10.0,
-              ),
-              Container(
-                width: 100.0,
-                height: 30.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.grey[300],
-                ),
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                  textAlign: TextAlign.center,
-                  controller: _textContAltura,
-                  decoration: InputDecoration(
-                    hintText: 'Ej: 123',
-                  ),
-                ),
-              ),
-              Text(
-                "cm",
-                style: TextStyle(
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Text(
-            "Ingrese el peso",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 100.0,
-                height: 30.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.grey[300],
-                ),
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                  textAlign: TextAlign.center,
-                  controller: _textContKilos,
-                  decoration: InputDecoration(
-                    hintText: 'Ej: 42',
-                  ),
-                ),
-              ),
-              Text(
-                "Kg",
-                style: TextStyle(
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                width: 10.0,
-              ),
-              Container(
-                width: 100.0,
-                height: 30.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.grey[300],
-                ),
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                  textAlign: TextAlign.center,
-                  controller: _textContGramos,
-                  decoration: InputDecoration(
-                    hintText: 'Ej: 300',
-                  ),
-                ),
-              ),
-              Text(
-                "g",
-                style: TextStyle(
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Text(
-            "Ingrese fecha de nacimiento \n o edad en años y meses",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(
+              height: 10.0,
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Column(
-                children: [
-                  ElevatedButton(
-                    onPressed: () => _selectDate(context),
-                    child: const Text(
-                      'Fecha de\n nacimiento',
-                      textAlign: TextAlign.center,
+            Text(
+              "Ingrese el sexo",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+            ),
+            Row(
+              // mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              //crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  width: 150.0,
+                  child: RadioListTile(
+                    title: Text('Mujer'),
+                    value: 'mujer',
+                    groupValue: _selectedOption,
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedOption = value;
+                      });
+                    },
+                  ),
+                ),
+                Container(
+                  width: 150.0,
+                  child: RadioListTile(
+                    title: Text('Varón'),
+                    value: 'varon',
+                    groupValue: _selectedOption,
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedOption = value;
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              "Ingrese la altura",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 10.0,
+                ),
+                Container(
+                  width: 100.0,
+                  height: 30.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.grey[300],
+                  ),
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    textAlign: TextAlign.center,
+                    controller: _textContAltura,
+                    decoration: InputDecoration(
+                      hintText: 'Ej: 123',
                     ),
                   ),
-                  Text(
-                    dateFormat.format(dateTime),
+                ),
+                Text(
+                  "cm",
+                  style: TextStyle(
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
                   ),
-                ],
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Text(
+              "Ingrese el peso",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 100.0,
+                  height: 30.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.grey[300],
+                  ),
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    textAlign: TextAlign.center,
+                    controller: _textContKilos,
+                    decoration: InputDecoration(
+                      hintText: 'Ej: 42',
+                    ),
+                  ),
+                ),
+                Text(
+                  "Kg",
+                  style: TextStyle(
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  width: 10.0,
+                ),
+                Container(
+                  width: 100.0,
+                  height: 30.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.grey[300],
+                  ),
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                    textAlign: TextAlign.center,
+                    controller: _textContGramos,
+                    decoration: InputDecoration(
+                      hintText: 'Ej: 300',
+                    ),
+                  ),
+                ),
+                Text(
+                  "g",
+                  style: TextStyle(
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Text(
+              "Ingrese fecha de nacimiento \n o edad en años y meses",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 50.0,
-                    height: 30.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.grey[300],
-                    ),
-                    child: TextField(
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      textAlign: TextAlign.center,
-                      controller: _textContAnios,
-                      decoration: InputDecoration(
-                        hintText: 'Ej: 1',
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => _selectDate(context),
+                      child: const Text(
+                        'Fecha de\n nacimiento',
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                  ),
-                  Text(
-                    "a",
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
+                    Text(
+                      dateFormat.format(dateTime),
                     ),
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Container(
-                    width: 60.0,
-                    height: 30.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.grey[300],
-                    ),
-                    child: TextField(
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      textAlign: TextAlign.center,
-                      controller: _textContMeses,
-                      decoration: InputDecoration(
-                        hintText: 'Ej: 10',
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 50.0,
+                      height: 30.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.grey[300],
+                      ),
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        textAlign: TextAlign.center,
+                        controller: _textContAnios,
+                        decoration: InputDecoration(
+                          hintText: 'Ej: 1',
+                        ),
                       ),
                     ),
-                  ),
-                  Text(
-                    "m",
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
+                    Text(
+                      "a",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Container(
+                      width: 60.0,
+                      height: 30.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.grey[300],
+                      ),
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        textAlign: TextAlign.center,
+                        controller: _textContMeses,
+                        decoration: InputDecoration(
+                          hintText: 'Ej: 10',
+                        ),
+                      ),
+                    ),
+                    Text(
+                      "m",
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () => _resetearValores(context),
+                  child: const Text(
+                    'Limpiar',
+                    textAlign: TextAlign.center,
                   ),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () => _resetearValores(context),
-                child: const Text(
-                  'Limpiar',
-                  textAlign: TextAlign.center,
                 ),
-              ),
-              SizedBox(width: 15.0),
-              ElevatedButton(
-                onPressed: () => _obtenerResultados(context),
-                child: const Text(
-                  'Calcular',
-                  textAlign: TextAlign.center,
+                SizedBox(width: 15.0),
+                ElevatedButton(
+                  onPressed: () => _obtenerResultados(context),
+                  child: const Text(
+                    'Calcular',
+                    textAlign: TextAlign.center,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "IMC: ",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
+              ],
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "IMC: ",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              Text(
-                _imc,
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
+                Text(
+                  _imc,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              SizedBox(
-                width: 20.0,
-              ),
-              Text(
-                "Percentil: ",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
+                SizedBox(
+                  width: 20.0,
                 ),
-              ),
-              Text(
-                _percentil,
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
+                Text(
+                  "Percentil: ",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+                Text(
+                  _percentil,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
